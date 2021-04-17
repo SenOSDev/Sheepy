@@ -62,9 +62,20 @@ function createSheepyButton(){
     let sheepyStepContent = document.createElement('p');
     sheepyStepContent.id = 'sheepyStepContent';
 
+    let btnDiv = document.createElement('div');
+    btnDiv.style.display = 'inline'
     let nextButton = document.createElement('button');
     let previousButton = document.createElement('button');
     nextButton.classList.add('btn', 'btn-primary');
+
+    let contentButtonDiv = document.createElement('div');
+    contentButtonDiv.classList.add('text-center')
+    let contentButton = document.createElement('button');
+    contentButton.style.fontSize = '2vh';
+    contentButton.innerText = 'Inhalt'
+    contentButton.classList.add('btn', 'btn-primary');
+    contentButtonDiv.appendChild(contentButton)
+
     nextButton.id = 'sheepyTextNextButton'
     nextButton.style.float = 'right';
     nextButton.style.fontSize = '2vh'
@@ -76,11 +87,14 @@ function createSheepyButton(){
     nextButton.style.display = 'none';
     previousButton.style.display = 'none';
 
+    // btnDiv.appendChild(contentButton);
+    btnDiv.appendChild(contentButtonDiv);
+    btnDiv.appendChild(nextButton);
+    btnDiv.appendChild(previousButton);
 
     sheepyText.appendChild(sheepyStepTitle);
     sheepyText.appendChild(sheepyStepContent);
-    sheepyText.appendChild(previousButton);
-    sheepyText.appendChild(nextButton);
+    sheepyText.appendChild(btnDiv);
 
     main.appendChild(buttonRoot)
     main.appendChild(sheepyText)
