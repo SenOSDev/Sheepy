@@ -72,8 +72,10 @@ function createSheepyButton(){
     contentButtonDiv.classList.add('text-center')
     let contentButton = document.createElement('button');
     contentButton.style.fontSize = '2vh';
+    contentButtonDiv.id = 'sheepyTextContentButton'
     contentButton.innerText = 'Inhalt'
     contentButton.classList.add('btn', 'btn-primary');
+    contentButton.setAttribute('onclick', 'showSteps()');
     contentButtonDiv.appendChild(contentButton)
 
     nextButton.id = 'sheepyTextNextButton'
@@ -158,6 +160,7 @@ function showStep(step){
     currentStep = step;
     document.getElementById('sheepyTextPreviousButton').style.display = 'none'
     document.getElementById('sheepyTextNextButton').style.display = 'none'
+    document.getElementById('sheepyTextContentButton').style.display = 'block'
     document.getElementById('sheepyStepTitle').innerText = o.steps[step].title;
     document.getElementById('sheepyStepContent').innerText = o.steps[step].content;
     if(currentStep !== 0){
@@ -168,6 +171,26 @@ function showStep(step){
         document.getElementById('sheepyTextNextButton').style.display = 'block'
         document.getElementById('sheepyTextNextButton').setAttribute('onclick', 'showStep(' + (currentStep + 1) + ')')
     }
+}
+
+function showSteps(){
+    document.getElementById('sheepyTextPreviousButton').style.display = 'none';
+    document.getElementById('sheepyTextContentButton').style.display = 'none'
+    document.getElementById('sheepyTextNextButton').style.display = 'none';
+    document.getElementById('sheepyStepTitle').innerText = 'Inhalt'
+    document.getElementById('sheepyStepContent').innerHTML = '';
+    let listRoot = document.createElement('ul');
+    listRoot.classList.add('list-group')
+    for(let i = 0; i < o.steps.length; i++){
+        let li = document.createElement('li');
+        let a = document.createElement('a');
+        a.setAttribute('href', 'javascript:showStep(' + i + ')')
+        a.innerText = o.steps[i].title;
+        li.appendChild(a);
+        li.classList.add('list-group-item')
+        listRoot.appendChild(li)
+    }
+    document.getElementById('sheepyStepContent').appendChild(listRoot);
 }
 
 // Cookies
