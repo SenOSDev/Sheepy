@@ -51,6 +51,8 @@
 }
 
 #sheepyText {
+    max-height: 60vh;
+    overflow-y: scroll;
     display: none;
     bottom: 5%;
     right: 10%;
@@ -63,7 +65,6 @@
     background-color: var(--sheepy-bubble);
     border-color: var(--sheepy-bubble-border);
     border-style: solid;
-
 }
 
 #sheepyText:before {
