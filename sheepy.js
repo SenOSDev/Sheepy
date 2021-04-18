@@ -71,6 +71,7 @@ function createSheepyButton(){
     let contentButtonDiv = document.createElement('div');
     contentButtonDiv.classList.add('text-center')
     let contentButton = document.createElement('button');
+    contentButtonDiv.style.display = 'inline'
     contentButton.style.fontSize = '2vh';
     contentButtonDiv.id = 'sheepyTextContentButton'
     contentButton.innerText = 'Inhalt'
