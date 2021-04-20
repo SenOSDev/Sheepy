@@ -77,7 +77,16 @@ function createSheepyButton(){
     contentButton.innerText = 'Inhalt'
     contentButton.classList.add('btn', 'btn-primary');
     contentButton.setAttribute('onclick', 'showSteps()');
+
+    let speakButton = document.createElement('button');
+    speakButton.style.fontSize = '2vh';
+    speakButton.innerText = 'Text sprechen'
+    speakButton.classList.add('btn', 'btn-primary');
+    speakButton.style.margin = "1%"
+    speakButton.setAttribute('onclick', 'speakCurrentStep()');
+
     contentButtonDiv.appendChild(contentButton)
+    contentButtonDiv.appendChild(speakButton);
 
     nextButton.id = 'sheepyTextNextButton'
     nextButton.style.float = 'right';
@@ -192,6 +201,28 @@ function showSteps(){
         listRoot.appendChild(li)
     }
     document.getElementById('sheepyStepContent').appendChild(listRoot);
+}
+
+// tts
+
+async function speakCurrentStep(){
+    // speak title
+    await speak(document.getElementById('sheepyStepTitle').innerText);
+    // speak content
+    await speak(document.getElementById('sheepyStepContent').innerText)
+}
+
+function speak(text){
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = text;
+    msg.volume = 1;
+    msg.lang = "de-DE";
+    msg.rate = 1;
+    msg.pitch = 1;
+    speechSynthesis.speak(msg);
+    msg.onend = function(){
+        return true;
+    }
 }
 
 // Cookies
