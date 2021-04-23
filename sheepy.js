@@ -120,7 +120,7 @@ function installSheepyCSS(){
     let sheepyCSS = document.createElement('link');
     sheepyCSS.rel = 'stylesheet';
     sheepyCSS.href = 'https://cdn.senos.xyz/sheepy/1.0/dist/css/sheepy.min.css'
-    // document.head.prepend(sheepyCSS)
+    document.head.prepend(sheepyCSS)
     if(!isSheetLoaded(animateCSSURL)){
         let animateCSS = document.createElement('link');
         animateCSS.rel = 'stylesheet';
