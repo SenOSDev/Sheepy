@@ -9,6 +9,7 @@ const bootstrapCSSCrossOrigin = "anonymous";
 const bootstrapBundleURL = "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js";
 const bootstrapBundleIntegrity = "sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf";
 const bootstrapBundleCrossOrigin = "anonymous";
+const animateCSSURL = "https://cdn.senos.xyz/animate.css/dist/animate.min.css"
 
 let o = {};
 
@@ -108,6 +109,7 @@ function createSheepyButton(){
     sheepyText.appendChild(sheepyStepContent);
     sheepyText.appendChild(btnDiv);
 
+
     main.appendChild(buttonRoot)
     main.appendChild(sheepyText)
     document.body.appendChild(main);
@@ -118,7 +120,23 @@ function installSheepyCSS(){
     let sheepyCSS = document.createElement('link');
     sheepyCSS.rel = 'stylesheet';
     sheepyCSS.href = 'https://cdn.senos.xyz/sheepy/1.0/dist/css/sheepy.min.css'
-    document.head.prepend(sheepyCSS)
+    // document.head.prepend(sheepyCSS)
+    if(!isSheetLoaded(animateCSSURL)){
+        let animateCSS = document.createElement('link');
+        animateCSS.rel = 'stylesheet';
+        animateCSS.href = animateCSSURL;
+        document.head.prepend(animateCSS)
+    }
+}
+
+function isSheetLoaded(url){
+    for (let i=0; i<document.styleSheets.length; i++) {
+        let sheet = document.styleSheets[i];
+        if (sheet.href === url) {
+            return true;
+        }
+    }
+    return false
 }
 
 function loadLibraries(){
@@ -155,14 +173,20 @@ function addEventListeners(){
 function callSheepy(){
     if(!sheepyActive){
         currentStep = 0;
+        document.getElementById('sheepyText').className = ""
+        document.getElementById('sheepyText').classList.add('animation', 'animation-fast', 'animation-fadeIn-right')
         document.getElementById('sheepyText').style.display = 'block';
         showStep(currentStep)
         currentStep++;
         sheepyActive = true;
     }else {
         currentStep = 0;
-        document.getElementById('sheepyText').style.display = 'none';
-        sheepyActive = false;
+        document.getElementById('sheepyText').className = ""
+        document.getElementById('sheepyText').classList.add('animation', 'animation-fast', 'animation-fadeOut-right')
+        setTimeout(() => {
+            document.getElementById('sheepyText').style.display = 'none'
+            sheepyActive = false;
+        }, 2000)
     }
 }
 

@@ -67,7 +67,7 @@
     border-style: solid;
 }
 
-#sheepyText:before {
+#sheepyText:after {
     content: "";
     width: 0px;
     height: 0px;
