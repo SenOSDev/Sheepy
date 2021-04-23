@@ -67,19 +67,6 @@
     border-style: solid;
 }
 
-#sheepyText:after {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: fixed;
-    border-left: 10px solid var(--sheepy-bubble-border);
-    border-right: 10px solid transparent;
-    border-top: 10px solid var(--sheepy-bubble-border);
-    border-bottom: 10px solid transparent;
-    right: -22px;
-    top: 80%;
-}
-
 #sheepyStepTitle {
     font-size: 2.2vh;
     font-weight: bold;
